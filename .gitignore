@@ -2,3 +2,5 @@ CMakeCache.txt
 CMakeFiles
 CMakeLists.txt
 DisplayImage.cpp
+Makefile
+cmake_install.cmake
