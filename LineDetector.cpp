@@ -29,7 +29,7 @@ float IntersectWithYAxis(Vec4i line, float slope)
 	if (slope == FLT_MAX) {
 		return -FLT_MAX;
 	} else {
-		return ((float)line[1]) - ((float)slope * line[0]);
+		return ((float)line[1]) - ((float)slope * ((float)line[0]));
 	}
 }
 
@@ -54,7 +54,7 @@ DetectedLineResult LineDetector::DetectLine(vector<Vec4i>* lines)
 
 				float b1 = IntersectWithYAxis(line1, slope1);
 				float b2 = IntersectWithYAxis(line2, slope2);
-				//cout << "dist " << std::abs(b2 - b1) << "\n";
+				cout << "dist " << b1 << ", " << b2 << "\n";
  				if (std::abs(b2-b1)/std::sqrt(slope1*slope1 + 1) < DISTANCE_THRESHOLD) {
 //				if (std::abs(b2-b1) < DISTANCE_THRESHOLD) {
 					result.detectedLine->AddLine(line2);
