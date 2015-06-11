@@ -1,7 +1,7 @@
 CMakeCache.txt
 CMakeFiles
 CMakeLists.txt
-DisplayImage.cpp
+DisplayImage
 Makefile
 cmake_install.cmake
 *.vcxproj
