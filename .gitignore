@@ -16,3 +16,5 @@ DisplayImage.sdf
 DisplayImage.v12.suo
 Win32/Debug/ZERO_CHECK/ZERO_CHECK.log
 Debug/
+.cproject
+.project
