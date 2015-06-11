@@ -10,6 +10,6 @@ class CornerDetector
 public:
 	CornerDetector();
 	~CornerDetector();
-	Intersection DetectCorner(vector<DetectedLine>* lines);
+	Intersection DetectCorner(vector<DetectedLine>* lines, Mat image);
 };
 

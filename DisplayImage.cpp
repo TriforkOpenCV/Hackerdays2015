@@ -15,7 +15,7 @@ void ProcessImage(Mat input)
 
 	vector<Vec4i> lines = lineExtractor->ExtractLines(input);
 	vector<DetectedLine>* detectedLines = lineDetector->DetectLines(lines);
-	Intersection corner = cornerDetector->DetectCorner(detectedLines);
+	Intersection corner = cornerDetector->DetectCorner(detectedLines, input);
 
 	delete lineExtractor;
 	delete lineDetector;

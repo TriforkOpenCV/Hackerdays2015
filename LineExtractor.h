@@ -10,6 +10,6 @@ class LineExtractor
 public:
 	LineExtractor();
 	~LineExtractor();
-	vector<Vec4i> ExtractLines(Mat inputImage);
+	vector<Vec4i> ExtractLines(Mat image);
 };
 

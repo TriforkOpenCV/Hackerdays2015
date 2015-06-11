@@ -10,11 +10,8 @@ LineExtractor::~LineExtractor()
 {
 }
 
-vector<Vec4i> LineExtractor::ExtractLines(Mat inputImage)
+vector<Vec4i> LineExtractor::ExtractLines(Mat image)
 {
-	Mat image;
-	resize(inputImage, image, Size(), 0.25, 0.25, INTER_NEAREST);
-
 	Mat edges;
 	blur(image, image, Size(5, 5));
 	Canny(image, edges, 100, 50, 3);
