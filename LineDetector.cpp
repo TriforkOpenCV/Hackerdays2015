@@ -14,8 +14,8 @@ LineDetector::~LineDetector()
 
 float Slope(Vec4i line)
 {
-	int dy = line[3] - line[1];
-	int dx = line[2] - line[0];
+	float dy = line[3] - line[1];
+	float dx = line[2] - line[0];
 	if (dx != 0) {
 		return dy/dx;
 	} else {
@@ -29,7 +29,7 @@ float IntersectWithYAxis(Vec4i line, float slope)
 	if (slope == FLT_MAX) {
 		return -FLT_MAX;
 	} else {
-		return line[1] - slope * line[0];
+		return ((float)line[1]) - ((float)slope * line[0]);
 	}
 }
 
@@ -48,11 +48,13 @@ DetectedLineResult LineDetector::DetectLine(vector<Vec4i>* lines)
 		for (int i = 1; i < lines->size(); i++) {
 			Vec4i line2 = lines->at(i);
 			float slope2 = Slope(line2);
+			//cout << "slope " << std::abs(slope2 - slope1) << "\n";
 			if (std::abs(slope2 - slope1) < SLOPE_THRESHOLD) {
 				float b1 = IntersectWithYAxis(line1, slope1);
 				float b2 = IntersectWithYAxis(line2, slope2);
+				cout << "dist " << std::abs(b2 - b1) << "\n";
 				if (std::abs(b2-b1) < DISTANCE_THRESHOLD) {
-					//result.detectedLine->AddLine(line2);
+					result.detectedLine->AddLine(line2);
 				} else {
 					result.remainingLines->push_back(line2);
 				}

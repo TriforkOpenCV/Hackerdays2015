@@ -1,4 +1,5 @@
 #include "DetectedLine.h"
+#include <cmath>
 
 DetectedLine::DetectedLine(Vec4i line)
 {
@@ -38,4 +39,40 @@ void DetectedLine::SetLeftMostPointFirst(Vec4i line)
 Vec4i DetectedLine::GetLine()
 {
 	return _line;
+}
+
+float DetectedLine::Length()
+{
+	float dx = _line[2] - _line[0];
+	float dy = _line[3] - _line[1];
+	return std::sqrt(dx*dx + dy*dy);
+
+}
+
+Intersection DetectedLine::GetIntersectionPoint(DetectedLine* otherLine)
+{
+	Vec4i other = otherLine->GetLine();
+	if (DetectedLine::Length() < 500 || otherLine->Length() < 500) {
+		return Intersection();
+	}
+
+	float x1 = _line[0], x2 = _line[2], x3 = other[0], x4 = other[2];
+	float y1 = _line[1], y2 = _line[3], y3 = other[1], y4 = other[3];
+
+	float d = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
+	if (d == 0) return Intersection();
+
+	float pre = (x1 * y2 - y1 * x2), post = (x3 * y4 - y3 * x4);
+	float x = ( pre * (x3 - x4) - (x1 - x2) * post) / d;
+	float y = ( pre * (y3 - y4) - (y1 - y2) * post) / d;
+
+	// todo remove T-junctions
+
+	Intersection intersection = Intersection();
+
+	intersection.Point = Point2f(x, y);
+	intersection.IsCorner = false;
+	intersection.Angle = 0; // todo
+
+	return intersection;
 }

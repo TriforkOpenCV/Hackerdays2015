@@ -21,8 +21,9 @@ private:
 public:
 	DetectedLine(Vec4i line);
 	~DetectedLine();
-	Intersection GetIntersectionPoint(DetectedLine otherLine);
+	Intersection GetIntersectionPoint(DetectedLine* otherLine);
 	Vec4i GetLine();
+	float Length();
 	void AddLine(Vec4i other);
 };
 
