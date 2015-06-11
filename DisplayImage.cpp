@@ -19,6 +19,9 @@ int main(int argc, char** argv )
         printf("No image data \n");
         return -1;
     }
+    blur(image, image, Size(3, 3));
+    Canny(image, image, 100, 50, 3);
+
     namedWindow("Display Image", WINDOW_AUTOSIZE );
     imshow("Display Image", image);
 
