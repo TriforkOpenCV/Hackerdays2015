@@ -1,5 +1,6 @@
 #include "DetectedLine.h"
 #include <cmath>
+#include <stdio.h>
 
 DetectedLine::DetectedLine(Vec4i line)
 {
@@ -52,7 +53,7 @@ float DetectedLine::Length()
 Intersection DetectedLine::GetIntersectionPoint(DetectedLine* otherLine)
 {
 	Vec4i other = otherLine->GetLine();
-	if (DetectedLine::Length() < 500 || otherLine->Length() < 500) {
+	if (DetectedLine::Length() < 300 || otherLine->Length() < 300) {
 		return Intersection();
 	}
 
@@ -75,7 +76,27 @@ Intersection DetectedLine::GetIntersectionPoint(DetectedLine* otherLine)
 
 	intersection.Point = Point2f(x, y);
 	intersection.IsCorner = true;
-	intersection.Angle = 0; // todo
+
+	float dx1 = x1 - x2;
+	float dy1 = y1 - y2;
+	float dx2 = x3 - x4;
+	float dy2 = y3 - y4;
+	float angle1, angle2, angle;
+
+	if (x1 != 0) {
+		angle1 = std::atan(dy1/dx1);
+	} else {
+		angle1 = M_PI / 2;
+	}
+
+	if (x2 != 0) {
+		angle2 = std::atan(dy2/dx2);
+	} else {
+		angle2 = M_PI / 2;
+	}
+	angle = std::abs(angle2-angle1);
+	//std::cout << angle << ", " << angle1 << ", " << angle2 << "\n";
+	intersection.Angle = angle * 180 / M_PI;
 
 	return intersection;
 }

@@ -49,11 +49,14 @@ DetectedLineResult LineDetector::DetectLine(vector<Vec4i>* lines)
 			Vec4i line2 = lines->at(i);
 			float slope2 = Slope(line2);
 			//cout << "slope " << std::abs(slope2 - slope1) << "\n";
-			if (std::abs(slope2 - slope1) < SLOPE_THRESHOLD) {
+//			if (std::abs(slope2 - slope1) < SLOPE_THRESHOLD) {
+			if (std::abs(1 - slope2 / slope1) < 0.07) {
+
 				float b1 = IntersectWithYAxis(line1, slope1);
 				float b2 = IntersectWithYAxis(line2, slope2);
-				cout << "dist " << std::abs(b2 - b1) << "\n";
-				if (std::abs(b2-b1) < DISTANCE_THRESHOLD) {
+				//cout << "dist " << std::abs(b2 - b1) << "\n";
+ 				if (std::abs(b2-b1)/std::sqrt(slope1*slope1 + 1) < DISTANCE_THRESHOLD) {
+//				if (std::abs(b2-b1) < DISTANCE_THRESHOLD) {
 					result.detectedLine->AddLine(line2);
 				} else {
 					result.remainingLines->push_back(line2);
