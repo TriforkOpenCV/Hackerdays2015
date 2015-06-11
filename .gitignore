@@ -4,3 +4,8 @@ CMakeLists.txt
 DisplayImage.cpp
 Makefile
 cmake_install.cmake
+*.vcxproj
+*.sln
+ALL_BUILD.vcxproj.filters
+DisplayImage.vcxproj.filters
+ZERO_CHECK.vcxproj.filters
