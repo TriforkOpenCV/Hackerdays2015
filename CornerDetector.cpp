@@ -15,7 +15,9 @@ Intersection CornerDetector::DetectCorner(vector<DetectedLine*>* lines, Mat imag
 	for (int i = 0; i < lines->size(); i++) {
 		for (int j = i + 1; j < lines->size(); j++) {
 			Intersection intersection = lines->at(i)->GetIntersectionPoint(lines->at(j));
-			circle(image, intersection.Point, 10, Scalar(0, 255, 0), 3);
+			if (intersection.IsCorner) {
+				circle(image, intersection.Point, 12, Scalar(0, 255, 0), 5);
+			}
 		}
 	}
 

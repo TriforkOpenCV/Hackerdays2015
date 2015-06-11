@@ -66,12 +66,15 @@ Intersection DetectedLine::GetIntersectionPoint(DetectedLine* otherLine)
 	float x = ( pre * (x3 - x4) - (x1 - x2) * post) / d;
 	float y = ( pre * (y3 - y4) - (y1 - y2) * post) / d;
 
-	// todo remove T-junctions
+	// remove "T-junctions"
+	if ( (x > x1 && x < x2) || (y > y1 && y < y2) || (x > x3 && x < x4) || (y > y3 && y < y4)) {
+		return Intersection();
+	}
 
 	Intersection intersection = Intersection();
 
 	intersection.Point = Point2f(x, y);
-	intersection.IsCorner = false;
+	intersection.IsCorner = true;
 	intersection.Angle = 0; // todo
 
 	return intersection;
