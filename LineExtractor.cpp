@@ -22,6 +22,7 @@ vector<Vec4i> LineExtractor::ExtractLines(Mat image)
 	vector<Vec4i> lines;
 	HoughLinesP(edges, lines, 1, CV_PI / 180, 50, 100, 10);
 
+	/* display..
 	for (size_t i = 0; i < lines.size(); i++)
 	{
 		Vec4i l = lines[i];
@@ -31,6 +32,7 @@ vector<Vec4i> LineExtractor::ExtractLines(Mat image)
 	namedWindow("Display Image", WINDOW_AUTOSIZE);
 	imshow("Display Image", image);
 	waitKey(0);
+	*/
 
 	return lines;
 }

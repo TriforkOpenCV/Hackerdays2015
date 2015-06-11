@@ -16,11 +16,13 @@ class DetectedLine
 {
 private:
 	Vec4i _line;
+	void SetLeftMostPointFirst(Vec4i line);
 
 public:
 	DetectedLine(Vec4i line);
 	~DetectedLine();
 	Intersection GetIntersectionPoint(DetectedLine otherLine);
 	Vec4i GetLine();
+	void AddLine(Vec4i other);
 };
 

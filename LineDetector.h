@@ -5,11 +5,27 @@
 using namespace cv;
 using namespace std;
 
+struct DetectedLineResult
+{
+public:
+	DetectedLine* detectedLine;
+	vector<Vec4i>* remainingLines;
+};
+
+/*
+ * Given a set of raw lines identify line fragments that are part of the same line
+ */
 class LineDetector
 {
+private:
+	static const float SLOPE_THRESHOLD = 0.01;
+	static const float DISTANCE_THRESHOLD = 20;
+
+	DetectedLineResult DetectLine(vector<Vec4i>* lines);
+
 public:
 	LineDetector();
 	~LineDetector();
-	vector<DetectedLine>* DetectLines(vector<Vec4i> rawLines);
+	vector<DetectedLine*>* DetectLines(vector<Vec4i>* rawLines);
 };
 

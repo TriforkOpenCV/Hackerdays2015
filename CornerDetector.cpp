@@ -10,7 +10,7 @@ CornerDetector::~CornerDetector()
 {
 }
 
-Intersection CornerDetector::DetectCorner(vector<DetectedLine>* lines, Mat image)
+Intersection CornerDetector::DetectCorner(vector<DetectedLine*>* lines, Mat image)
 {
 	return Intersection();
 }
