@@ -52,10 +52,12 @@ DetectedLineResult LineDetector::DetectLine(vector<Vec4i>* lines)
 				float b1 = IntersectWithYAxis(line1, slope1);
 				float b2 = IntersectWithYAxis(line2, slope2);
 				if (std::abs(b2-b1) < DISTANCE_THRESHOLD) {
-					result.detectedLine->AddLine(line2);
+					//result.detectedLine->AddLine(line2);
 				} else {
 					result.remainingLines->push_back(line2);
 				}
+			} else {
+				result.remainingLines->push_back(line2);
 			}
 		}
 		//delete lines;

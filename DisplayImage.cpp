@@ -19,11 +19,11 @@ void ProcessImage(Mat input)
 	for (size_t i = 0; i < detectedLines->size(); i++)
 	{
 		Vec4i l = detectedLines->at(i)->GetLine();
-		line(input, Point(l[0], l[1]), Point(l[2], l[3]), Scalar(0, 0, 255), 1, CV_AA);
+		line(input, Point(l[0], l[1]), Point(l[2], l[3]), Scalar(255, 0, 0), 3, CV_AA);
 	}
 
 	Mat small;
-	resize(input, small, Size(0,0), 0.25, 0.25);
+	resize(input, small, Size(0,0), 0.5, 0.5);
 	namedWindow("Display Image", WINDOW_AUTOSIZE);
 	imshow("Display Image", small);
 	waitKey(0);

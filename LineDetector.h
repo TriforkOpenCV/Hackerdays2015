@@ -18,8 +18,8 @@ public:
 class LineDetector
 {
 private:
-	static const float SLOPE_THRESHOLD = 0.01;
-	static const float DISTANCE_THRESHOLD = 20;
+	static const float SLOPE_THRESHOLD = 0.1;
+	static const float DISTANCE_THRESHOLD = 0.1;
 
 	DetectedLineResult DetectLine(vector<Vec4i>* lines);
 
