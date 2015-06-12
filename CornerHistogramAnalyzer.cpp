@@ -15,7 +15,13 @@ CornerHistogramAnalyzer::~CornerHistogramAnalyzer() {
 
 bool CornerHistogramAnalyzer::IsLowerLeftCornerOfPaper(Point2f point, Mat original)
 {
-	//Mat cropped = original(Rect(0,0,20,30));
+	float distance = 20;
+	Point2f q1point = Point2f(point.x + distance,point.y + distance);
+	Point2f q2point = Point2f(point.x - distance,point.y + distance);
+	Point2f q3point = Point2f(point.x - distance,point.y - distance);
+	Point2f q4point = Point2f(point.x + distance,point.y - distance);
+
+	Mat q1Mat = original(Rect(q1point.x,q1point.y,10,10));
 
 	Mat image(original.size(), CV_8UC1);
 	cvtColor(original, image, CV_BGR2GRAY);
