@@ -8,9 +8,18 @@ using namespace std;
 class LineExtractor
 {
 public:
+	// Blur
+	int Blur = 5;
+
+	// Edge Detection
+	double CannyEdgeThreshold1 = 100;
+	double CannyEdgeThreshold2 = 50;
+	int ApertureSize = 3;
+
+	// Hough parameters
 	double Rho = 1;
 	double Theta = CV_PI / 180;
-	int Threshold = 50;
+	int HoughThreshold = 50;
 	double MinLineLength = 100;
 	double MaxLineGap = 10;
 
