@@ -8,8 +8,9 @@ using namespace std;
 class CornerDetector
 {
 public:
+	int AngleTolerance = 5;
 	CornerDetector();
 	~CornerDetector();
-	Intersection DetectCorner(vector<DetectedLine*>* lines, Mat image);
+	vector<Intersection>* DetectCorner(vector<DetectedLine*>* lines, Mat image);
 };
 

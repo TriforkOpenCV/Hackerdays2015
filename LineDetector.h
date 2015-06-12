@@ -18,12 +18,11 @@ public:
 class LineDetector
 {
 private:
-	static const float SLOPE_THRESHOLD = 2;
-	static const float DISTANCE_THRESHOLD = 100;
-
 	DetectedLineResult DetectLine(vector<Vec4i>* lines);
 
 public:
+	float SlopeThreshold = 0.05;
+	float DistanceThreshold = 100;
 	LineDetector();
 	~LineDetector();
 	vector<DetectedLine*>* DetectLines(vector<Vec4i>* rawLines);
