@@ -3,6 +3,7 @@
 #include "LineExtractor.h"
 #include "LineDetector.h"
 #include "CornerDetector.h"
+#include "CornerHistogramAnalyzer.h"
 
 using namespace cv;
 using namespace std;
@@ -40,6 +41,9 @@ void ProcessImage(Mat input)
 	cornerDetector->WindowHeight = 0.3;
 	cornerDetector->WindowWidth = 0.3;
 
+	CornerHistogramAnalyzer* histogramAnalyzer = new CornerHistogramAnalyzer();
+
+
 	vector<Vec4i> lines = lineExtractor->ExtractLines(image);
 	for (int i = 0; i < lines.size(); i++)
 	{
@@ -64,9 +68,12 @@ void ProcessImage(Mat input)
 	}
 	DisplayResizedImage(image);
 
+	histogramAnalyzer->IsLowerLeftCornerOfPaper(Point2f(0,0), image);
+
 	delete lineExtractor;
 	delete lineDetector;
 	delete cornerDetector;
+	delete histogramAnalyzer;
 }
 
 

@@ -98,7 +98,6 @@ Intersection DetectedLine::GetIntersectionPoint(DetectedLine* otherLine, float m
 		angle2 = M_PI / 2;
 	}
 	angle = std::abs(angle2-angle1);
-	//std::cout << angle << ", " << angle1 << ", " << angle2 << "\n";
 	intersection.Angle = angle * 180 / M_PI;
 
 	return intersection;
