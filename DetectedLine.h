@@ -7,6 +7,7 @@ using namespace cv;
 struct Intersection
 {
 public:
+	bool IsIntersection;
 	Point2f Point;
 	double Angle;
 	bool IsCorner;
@@ -21,7 +22,7 @@ private:
 public:
 	DetectedLine(Vec4i line);
 	~DetectedLine();
-	Intersection GetIntersectionPoint(DetectedLine* otherLine);
+	Intersection GetIntersectionPoint(DetectedLine* otherLine, float minLineLength);
 	Vec4i GetLine();
 	float Length();
 	void AddLine(Vec4i other);

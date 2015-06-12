@@ -50,10 +50,10 @@ float DetectedLine::Length()
 
 }
 
-Intersection DetectedLine::GetIntersectionPoint(DetectedLine* otherLine)
+Intersection DetectedLine::GetIntersectionPoint(DetectedLine* otherLine, float minLineLength)
 {
 	Vec4i other = otherLine->GetLine();
-	if (DetectedLine::Length() < 300 || otherLine->Length() < 300) {
+	if (DetectedLine::Length() < minLineLength || otherLine->Length() < minLineLength) {
 		return Intersection();
 	}
 
@@ -67,15 +67,18 @@ Intersection DetectedLine::GetIntersectionPoint(DetectedLine* otherLine)
 	float x = ( pre * (x3 - x4) - (x1 - x2) * post) / d;
 	float y = ( pre * (y3 - y4) - (y1 - y2) * post) / d;
 
-	// remove "T-junctions"
-	if ( (x > x1 && x < x2) || (y > y1 && y < y2) || (x > x3 && x < x4) || (y > y3 && y < y4)) {
-		return Intersection();
-	}
 
 	Intersection intersection = Intersection();
 
+	intersection.IsIntersection = true;
 	intersection.Point = Point2f(x, y);
-	intersection.IsCorner = true;
+
+	// annotate "T-junctions"
+	if ( (x > x1 && x < x2) || (y > y1 && y < y2) || (x > x3 && x < x4) || (y > y3 && y < y4)) {
+		intersection.IsCorner = false;
+	} else {
+		intersection.IsCorner = true;
+	}
 
 	float dx1 = x1 - x2;
 	float dy1 = y1 - y2;

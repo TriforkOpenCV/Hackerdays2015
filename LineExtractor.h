@@ -18,7 +18,7 @@ public:
 
 	// Hough parameters
 	double Rho = 1;
-	double Theta = CV_PI / 180;
+	double Theta = 1; // degrees
 	int HoughThreshold = 50;
 	double MinLineLength = 100;
 	double MaxLineGap = 10;

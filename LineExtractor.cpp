@@ -20,7 +20,7 @@ vector<Vec4i> LineExtractor::ExtractLines(Mat image)
 	//imshow("Canny", edges);
 
 	vector<Vec4i> lines;
-	HoughLinesP(edges, lines, Rho, Theta, HoughThreshold, MinLineLength, MaxLineGap);
+	HoughLinesP(edges, lines, Rho, Theta * CV_PI / 180, HoughThreshold, MinLineLength, MaxLineGap);
 
 	return lines;
 }
