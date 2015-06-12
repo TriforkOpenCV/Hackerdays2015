@@ -35,6 +35,10 @@ void ProcessImage(Mat input)
 	CornerDetector* cornerDetector = new CornerDetector();
 	cornerDetector->AngleTolerance = 20;
 	cornerDetector->MinLineLength = 60;
+	cornerDetector->WindowY = 0.0;
+	cornerDetector->WindowY = 0.7;
+	cornerDetector->WindowHeight = 0.3;
+	cornerDetector->WindowWidth = 0.3;
 
 	vector<Vec4i> lines = lineExtractor->ExtractLines(image);
 	for (int i = 0; i < lines.size(); i++)
