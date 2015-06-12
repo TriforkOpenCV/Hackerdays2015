@@ -38,8 +38,10 @@ vector<Intersection>* CornerDetector::DetectCorner(vector<DetectedLine*>* lines,
 	for (int i = 0; i < lines->size(); i++) {
 		for (int j = i + 1; j < lines->size(); j++) {
 			Intersection intersection = lines->at(i)->GetIntersectionPoint(lines->at(j), MinLineLength);
-			if (intersection.IsIntersection && IsAngleWithinTolerance(intersection)
-				&& IsIntersectionWithinWindow(intersection, image)) {
+			if (intersection.IsIntersection
+					&& IsAngleWithinTolerance(intersection)
+					&& (IncludeTJunctions || intersection.IsCorner)
+					&& IsIntersectionWithinWindow(intersection, image)) {
 				result->push_back(intersection);
 			}
 		}

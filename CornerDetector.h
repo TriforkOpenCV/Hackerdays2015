@@ -13,6 +13,7 @@ private:
 public:
 	int AngleTolerance = 5;
 	float MinLineLength = 60;
+	bool IncludeTJunctions = true;
 
 	// Capture window, from top left corner, 1.0 = full width/height
 	float WindowX = 0.0;
